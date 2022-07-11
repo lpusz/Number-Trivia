@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:number_trivia/injection.dart';
 
 void main() {
+  configureInjection(Env.dev);
   runApp(const MyApp());
 }
 
