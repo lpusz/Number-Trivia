@@ -67,7 +67,7 @@ void main() {
       // Arrange
       when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
       when(mockRemoteDataSource.getConcreteNumberTrivia(any)).thenAnswer(
-        (_) async => tNumberTrivia,
+        (_) async => tModel,
       );
 
       // Act
@@ -83,7 +83,7 @@ void main() {
         () async {
           // Arrange
           when(mockRemoteDataSource.getConcreteNumberTrivia(any)).thenAnswer(
-            (_) async => tNumberTrivia,
+            (_) async => tModel,
           );
 
           // Act
@@ -101,7 +101,7 @@ void main() {
         () async {
           // Arrange
           when(mockRemoteDataSource.getConcreteNumberTrivia(any)).thenAnswer(
-            (_) async => tNumberTrivia,
+            (_) async => tModel,
           );
 
           // Act
@@ -182,7 +182,7 @@ void main() {
       // Arrange
       when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
       when(mockRemoteDataSource.getRandomNumberTrivia()).thenAnswer(
-        (_) async => tNumberTrivia,
+        (_) async => tModel,
       );
 
       // Act
@@ -198,7 +198,7 @@ void main() {
         () async {
           // Arrange
           when(mockRemoteDataSource.getRandomNumberTrivia()).thenAnswer(
-            (_) async => tNumberTrivia,
+            (_) async => tModel,
           );
 
           // Act
@@ -216,7 +216,7 @@ void main() {
         () async {
           // Arrange
           when(mockRemoteDataSource.getRandomNumberTrivia()).thenAnswer(
-            (_) async => tNumberTrivia,
+            (_) async => tModel,
           );
 
           // Act
