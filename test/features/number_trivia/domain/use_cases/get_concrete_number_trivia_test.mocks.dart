@@ -9,8 +9,6 @@ import 'package:mockito/mockito.dart' as _i1;
 import 'package:number_trivia/core/error/failures.dart' as _i5;
 import 'package:number_trivia/features/number_trivia/domain/entities/number_trivia.dart'
     as _i6;
-import 'package:number_trivia/features/number_trivia/domain/use_cases/get_concrete_number_trivia.dart'
-    as _i7;
 
 import 'get_concrete_number_trivia_test.dart' as _i3;
 
@@ -45,8 +43,8 @@ class MockTestNumberTriviaRepository extends _i1.Mock
               as _i4.Future<_i2.Either<_i5.Failure, _i6.NumberTrivia>>);
   @override
   _i4.Future<_i2.Either<_i5.Failure, _i6.NumberTrivia>> getConcreteNumberTrivia(
-          _i7.Params? params) =>
-      (super.noSuchMethod(Invocation.method(#getConcreteNumberTrivia, [params]),
+          int? number) =>
+      (super.noSuchMethod(Invocation.method(#getConcreteNumberTrivia, [number]),
           returnValue: Future<_i2.Either<_i5.Failure, _i6.NumberTrivia>>.value(
               _FakeEither_0<_i5.Failure, _i6.NumberTrivia>())) as _i4
           .Future<_i2.Either<_i5.Failure, _i6.NumberTrivia>>);

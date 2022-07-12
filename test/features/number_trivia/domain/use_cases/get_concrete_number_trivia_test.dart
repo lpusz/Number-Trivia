@@ -39,7 +39,7 @@ void main() {
 
     // Assert
     expect(result, const Right(tNumberTrivia));
-    verify(repository.getConcreteNumberTrivia(params));
+    verify(repository.getConcreteNumberTrivia(params.number));
     verifyNoMoreInteractions(repository);
   });
 }

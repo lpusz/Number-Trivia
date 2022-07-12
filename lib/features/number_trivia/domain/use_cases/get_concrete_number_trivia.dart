@@ -12,7 +12,7 @@ class GetConcreteNumberTrivia implements UseCase<NumberTrivia, Params> {
 
   @override
   Future<Either<Failure, NumberTrivia>> call(Params params) async {
-    return await repository.getConcreteNumberTrivia(params);
+    return await repository.getConcreteNumberTrivia(params.number);
   }
 }
 

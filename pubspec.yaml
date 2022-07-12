@@ -29,6 +29,10 @@ dependencies:
   dartz: ^0.10.1
   injectable: ^1.5.3
   mockito: ^5.2.0
+  data_connection_checker:
+    git:
+      url: https://github.com/chornthorn/data_connection_checker.git
+      ref: master
 
 dev_dependencies:
   flutter_test:
