@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 import 'package:number_trivia/core/error/exceptions.dart';
 import 'package:number_trivia/core/error/failures.dart';
 import 'package:number_trivia/core/network/network_info.dart';
@@ -10,11 +11,13 @@ import 'package:number_trivia/features/number_trivia/domain/repositories/number_
 
 typedef _ConcreteOrRandomChooser = Future<NumberTriviaModel> Function();
 
+@Injectable(as: NumberTriviaRepository)
 class NumberTriviaRepositoryImpl implements NumberTriviaRepository {
   final NumberTriviaRemoteDataSource remoteDataSource;
   final NumberTriviaLocalDataSource localDataSource;
   final NetworkInfo networkInfo;
 
+  @factoryMethod
   NumberTriviaRepositoryImpl({
     required this.remoteDataSource,
     required this.localDataSource,

@@ -1,6 +1,8 @@
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 import 'package:number_trivia/core/error/failures.dart';
 
+@lazySingleton
 class InputConverter {
   Either<Failure, int> stringToUnsignedInteger(String str) {
     try {

@@ -1,13 +1,16 @@
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 import 'package:number_trivia/core/error/exceptions.dart';
 import 'package:number_trivia/features/number_trivia/data/models/number_trivia_model.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'number_trivia_remote_data_source.g.dart';
 
+@lazySingleton
 @RestApi(baseUrl: 'http://numbersapi.com/')
 abstract class RemoteClient {
-  factory RemoteClient(Dio dio, {String baseUrl}) = _RemoteClient;
+  @factoryMethod
+  factory RemoteClient(Dio dio) = _RemoteClient;
 
   @GET('/random')
   Future<NumberTriviaModel> getRandomNumberTrivia();
@@ -28,6 +31,9 @@ abstract class NumberTriviaRemoteDataSource {
   Future<NumberTriviaModel> getConcreteNumberTrivia(int number);
 }
 
+// @Named('NumberTriviaRemoteDataSourceImpl')
+@Injectable(as: NumberTriviaRemoteDataSource)
+// @injectable
 class NumberTriviaRemoteDataSourceImpl implements NumberTriviaRemoteDataSource {
   final RemoteClient remoteClient;
 

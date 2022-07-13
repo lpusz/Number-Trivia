@@ -1,11 +1,13 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:number_trivia/core/error/failures.dart';
 import 'package:number_trivia/core/use_cases/use_case.dart';
 import 'package:number_trivia/core/util/input_converter.dart';
 import 'package:number_trivia/features/number_trivia/domain/entities/number_trivia.dart';
 import 'package:number_trivia/features/number_trivia/domain/use_cases/get_concrete_number_trivia.dart';
 import 'package:number_trivia/features/number_trivia/domain/use_cases/get_random_number_trivia.dart';
+import 'package:number_trivia/injection.dart';
 
 part 'number_trivia_event.dart';
 
@@ -16,11 +18,13 @@ const String cacheFailureMessage = 'Cache Failure';
 const String invalidInputFailureMessage =
     'Invalid input - The number must be a positive integer or zero.';
 
+@injectable
 class NumberTriviaBloc extends Bloc<NumberTriviaEvent, NumberTriviaState> {
   final GetConcreteNumberTrivia getConcrete;
   final GetRandomNumberTrivia getRandom;
   final InputConverter converter;
 
+  @factoryMethod
   NumberTriviaBloc({
     required this.getRandom,
     required this.getConcrete,

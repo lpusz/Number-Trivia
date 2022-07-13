@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:injectable/injectable.dart';
 import 'package:number_trivia/core/error/exceptions.dart';
 import 'package:number_trivia/features/number_trivia/data/models/number_trivia_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -16,9 +17,13 @@ abstract class NumberTriviaLocalDataSource {
 
 const cachedNumberTrivia = 'CACHED_NUMBER_TRIVIA';
 
+// @Named('NumberTriviaLocalDataSourceImpl')
+@Injectable(as: NumberTriviaLocalDataSource)
+// @injectable
 class NumberTriviaLocalDataSourceImpl implements NumberTriviaLocalDataSource {
   final SharedPreferences sharedPreferences;
 
+  // @factoryMethod
   NumberTriviaLocalDataSourceImpl({
     required this.sharedPreferences,
   });

@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:injectable/injectable.dart';
+import 'package:number_trivia/core/network/network_info.dart';
+import 'package:number_trivia/features/number_trivia/data/data_sources/number_trivia_local_data_source.dart';
+import 'package:number_trivia/features/number_trivia/data/data_sources/number_trivia_remote_data_source.dart';
+import 'package:number_trivia/features/number_trivia/domain/repositories/number_trivia_repository.dart';
+import 'package:number_trivia/features/number_trivia/presentation/bloc/number_trivia_bloc.dart';
 import 'package:number_trivia/injection.dart';
 
-void main() {
-  configureInjection(Env.dev);
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await configureInjection();
   runApp(const MyApp());
 }
 
@@ -104,6 +112,11 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
+            MaterialButton(
+              onPressed: _inject,
+              color: Colors.red,
+              child: Text('Inject'),
+            ),
           ],
         ),
       ),
@@ -113,5 +126,19 @@ class _MyHomePageState extends State<MyHomePage> {
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+
+  void _inject() async {
+    final local = getIt<NumberTriviaLocalDataSource>();
+    final remote = getIt<NumberTriviaRemoteDataSource>();
+    final bloc = getIt<NumberTriviaBloc>();
+    final checker = getIt<NetworkInfo>();
+    final repository = getIt<NumberTriviaRepository>();
+
+    print(local);
+    print(remote);
+    print(bloc);
+    print(checker);
+    print(repository);
   }
 }
