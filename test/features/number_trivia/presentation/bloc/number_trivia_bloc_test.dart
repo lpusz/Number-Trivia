@@ -1,11 +1,13 @@
+import 'package:bloc_test/bloc_test.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:number_trivia/core/util/input_converter.dart';
+import 'package:number_trivia/features/number_trivia/domain/entities/number_trivia.dart';
 import 'package:number_trivia/features/number_trivia/domain/use_cases/get_concrete_number_trivia.dart';
 import 'package:number_trivia/features/number_trivia/domain/use_cases/get_random_number_trivia.dart';
 import 'package:number_trivia/features/number_trivia/presentation/bloc/number_trivia_bloc.dart';
-import 'package:bloc_test/bloc_test.dart';
 
 import 'number_trivia_bloc_test.mocks.dart';
 
@@ -15,7 +17,6 @@ class TestGetConcreteNumberTrivia extends Mock
 class TestGetRandomNumberTrivia extends Mock implements GetRandomNumberTrivia {}
 
 class TestInputConverter extends Mock implements InputConverter {}
-
 
 @GenerateMocks([
   TestGetConcreteNumberTrivia,
@@ -27,12 +28,13 @@ void main() {
   late MockTestGetConcreteNumberTrivia getConcrete;
   late MockTestGetRandomNumberTrivia getRandom;
   late MockTestInputConverter converter;
+  late NumberTrivia expectedTrivia;
 
   setUp(() {
     getRandom = MockTestGetRandomNumberTrivia();
     getConcrete = MockTestGetConcreteNumberTrivia();
     converter = MockTestInputConverter();
-
+    expectedTrivia = const NumberTrivia(number: 1, text: 'test trivia');
     bloc = NumberTriviaBloc(
       getRandom: getRandom,
       getConcrete: getConcrete,
@@ -45,11 +47,47 @@ void main() {
   });
 
   blocTest<NumberTriviaBloc, NumberTriviaState>(
-    'TODO: description',
+    'should call the input converter to validate '
+    'and convert the string on an unsigned integer',
+    setUp: () {
+      when(converter.stringToUnsignedInteger(any)).thenReturn(
+        const Right(1),
+      );
+    },
     build: () => NumberTriviaBloc(
       getRandom: getRandom,
       getConcrete: getConcrete,
       converter: converter,
     ),
+    act: (bloc) => bloc.add(
+      GetTriviaForConcreteNumber('1'),
+    ),
+    verify: (_) {
+      verify(converter.stringToUnsignedInteger('1'));
+    },
+  );
+
+  blocTest<NumberTriviaBloc, NumberTriviaState>(
+    'should emit [Error] when the input is invalid',
+    setUp: () {
+      when(converter.stringToUnsignedInteger(any)).thenReturn(
+        Left(InvalidInputFailure()),
+      );
+    },
+    build: () => NumberTriviaBloc(
+      getRandom: getRandom,
+      getConcrete: getConcrete,
+      converter: converter,
+    ),
+    act: (bloc) => bloc.add(
+      GetTriviaForConcreteNumber('1'),
+    ),
+    expect: () => [
+      isA<Error>().having(
+        (state) => state.message,
+        'should have input failure message',
+        invalidInputFailureMessage,
+      )
+    ],
   );
 }
