@@ -10,27 +10,31 @@ class NumberTriviaPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bloc = getIt<NumberTriviaBloc>();
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text('Number Trivia'),
       ),
-      body: BlocProvider<NumberTriviaBloc>.value(
-        value: getIt<NumberTriviaBloc>(),
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: _buildColumn(),
-        ),
+      body: _body(bloc),
+    );
+  }
+
+  BlocProvider<NumberTriviaBloc> _body(NumberTriviaBloc bloc) {
+    return BlocProvider<NumberTriviaBloc>.value(
+      value: bloc,
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: _buildList(),
       ),
     );
   }
 
-  Column _buildColumn() {
-    return Column(
+  Widget _buildList() {
+    return ListView(
       children: const [
-        SizedBox(
-          height: 10,
-        ),
+        SizedBox(height: 10),
         TriviaBuilder(),
         SizedBox(height: 20),
         TriviaControls(),

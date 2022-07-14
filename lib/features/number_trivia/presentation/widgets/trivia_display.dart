@@ -18,19 +18,29 @@ class TriviaDisplay extends StatelessWidget {
       child: Column(
         children: [
           _numberDisplay(),
+          const SizedBox(height: 10),
           _descriptionDisplay(),
         ],
       ),
     );
   }
 
-  Text _numberDisplay() {
-    return Text(
-      numberTrivia.number.toString(),
-      textAlign: TextAlign.center,
-      style: const TextStyle(
-        fontSize: 50,
-        fontWeight: FontWeight.bold,
+  Widget _numberDisplay() {
+    return Container(
+      padding: const EdgeInsets.all(32),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.orangeAccent),
+        borderRadius: const BorderRadius.all(
+          Radius.circular(16),
+        ),
+      ),
+      child: Text(
+        numberTrivia.number.toString(),
+        textAlign: TextAlign.center,
+        style: const TextStyle(
+          fontSize: 50,
+          fontWeight: FontWeight.bold,
+        ),
       ),
     );
   }
