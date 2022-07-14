@@ -21,14 +21,18 @@ class _RemoteClient implements RemoteClient {
   Future<NumberTriviaModel> getRandomNumberTrivia() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Content-Type': 'application/json'};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<NumberTriviaModel>(
-            Options(method: 'GET', headers: _headers, extra: _extra)
-                .compose(_dio.options, '/random',
-                    queryParameters: queryParameters, data: _data)
-                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+        _setStreamType<NumberTriviaModel>(Options(
+                method: 'GET',
+                headers: _headers,
+                extra: _extra,
+                contentType: 'application/json')
+            .compose(_dio.options, '/random',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = NumberTriviaModel.fromJson(_result.data!);
     return value;
   }
@@ -37,14 +41,18 @@ class _RemoteClient implements RemoteClient {
   Future<NumberTriviaModel> getConcreteNumberTrivia(number) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Content-Type': 'application/json'};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<NumberTriviaModel>(
-            Options(method: 'GET', headers: _headers, extra: _extra)
-                .compose(_dio.options, '/${number}',
-                    queryParameters: queryParameters, data: _data)
-                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+        _setStreamType<NumberTriviaModel>(Options(
+                method: 'GET',
+                headers: _headers,
+                extra: _extra,
+                contentType: 'application/json')
+            .compose(_dio.options, '/${number}',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = NumberTriviaModel.fromJson(_result.data!);
     return value;
   }
