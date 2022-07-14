@@ -1,16 +1,22 @@
-# number_trivia
+## Number Trivia
 
-Reso Coder's - Flutter TDD Clean Architecture Course
+Simple Flutter Clean Architecture + TDD refresher based on:  
+[Reso Coder's TDD Clean Architecture Repository](https://github.com/ResoCoder/flutter-tdd-clean-architecture-course)
 
-## Getting Started
+#### Extended with:
 
-This project is a starting point for a Flutter application.
+*   [Dio](https://pub.dev/packages/dio)
+*   [Retrofit](https://pub.dev/packages/retrofit)
+*   [Injectable](https://pub.dev/packages/injectable)
+*   [bloc\_test](https://pub.dev/packages/bloc_test)
+*   [json\_serializable](https://pub.dev/packages/json_serializable)
 
-A few resources to get you started if this is your first Flutter project:
+## About
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+It's a very simple app which fetches data from [http://numbersapi.com/](http://numbersapi.com/) and shows trivia about typed or random numbers. The main goal of its implementation is to refresh some basic concepts which tend to fade away in the busyness of daily work.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![](https://i.imgur.com/1GrTQUX.png)
+
+![](https://i.imgur.com/y6qxAvJ.png)
+
+![](https://i.imgur.com/3apm3PS.png)

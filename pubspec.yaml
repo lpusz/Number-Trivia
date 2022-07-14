@@ -1,6 +1,6 @@
 name: number_trivia
 description: Reso Coder's - Flutter TDD Clean Architecture Course
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: 'none'
 version: 1.0.0+1
 
 environment:
@@ -10,21 +10,14 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.5
-  # Service locator
   get_it: ^7.2.0
-  # State management
   flutter_bloc: ^8.0.1
-  # Value equality
   equatable: ^2.0.3
-  # Remote API
   connectivity: ^3.0.6
   dio: ^4.0.6
   retrofit: ^3.0.1+1
-  # Builder
   built_value: ^8.3.3
-  # Easier models generation
   json_annotation: ^4.6.0
-  # Local cache
   shared_preferences: ^2.0.15
   dartz: ^0.10.1
   injectable: ^1.5.3
