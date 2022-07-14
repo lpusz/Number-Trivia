@@ -13,15 +13,12 @@ class TriviaDisplay extends StatelessWidget {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height / 3;
 
-    return SizedBox(
-      height: height,
-      child: Column(
-        children: [
-          _numberDisplay(),
-          const SizedBox(height: 10),
-          _descriptionDisplay(),
-        ],
-      ),
+    return Column(
+      children: [
+        _numberDisplay(),
+        const SizedBox(height: 10),
+        _descriptionDisplay(),
+      ],
     );
   }
 
@@ -45,17 +42,11 @@ class TriviaDisplay extends StatelessWidget {
     );
   }
 
-  Expanded _descriptionDisplay() {
-    return Expanded(
-      child: Center(
-        child: SingleChildScrollView(
-          child: Text(
-            numberTrivia.text,
-            style: const TextStyle(fontSize: 25),
-            textAlign: TextAlign.center,
-          ),
-        ),
-      ),
+  Widget _descriptionDisplay() {
+    return Text(
+      numberTrivia.text,
+      style: const TextStyle(fontSize: 25),
+      textAlign: TextAlign.center,
     );
   }
 }

@@ -34,10 +34,10 @@ class NumberTriviaPage extends StatelessWidget {
   Widget _buildList() {
     return ListView(
       children: const [
-        SizedBox(height: 10),
-        TriviaBuilder(),
         SizedBox(height: 20),
         TriviaControls(),
+        SizedBox(height: 20),
+        TriviaBuilder(),
       ],
     );
   }
