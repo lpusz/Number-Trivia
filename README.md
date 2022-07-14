@@ -15,8 +15,8 @@ Simple Flutter Clean Architecture + TDD refresher based on:
 
 It's a very simple app which fetches data from [http://numbersapi.com/](http://numbersapi.com/) and shows trivia about typed or random numbers. The main goal of its implementation is to refresh some basic concepts which tend to fade away in the busyness of daily work.
 
-![](https://i.imgur.com/1GrTQUX.png)
+![](https://i.imgur.com/kbBDvpj.png)
 
-![](https://i.imgur.com/y6qxAvJ.png)
+![](https://i.imgur.com/RdUglmZ.png)
 
-![](https://i.imgur.com/3apm3PS.png)
+![](https://i.imgur.com/H66aXsl.png)
