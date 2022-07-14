@@ -4,8 +4,8 @@ import 'package:number_trivia/injection.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   await configureInjection();
+
   runApp(const MyApp());
 }
 

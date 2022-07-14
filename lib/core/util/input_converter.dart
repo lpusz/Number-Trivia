@@ -4,18 +4,22 @@ import 'package:number_trivia/core/error/failures.dart';
 
 @lazySingleton
 class InputConverter {
-  Either<Failure, int> stringToUnsignedInteger(String str) {
+  Either<Failure, int> stringToUnsignedInteger(String text) {
     try {
-      final integer = int.parse(str);
-      if (integer < 0) {
-        throw const FormatException();
-      }
-
-      return Right(integer);
+      return _parse(text);
     } on FormatException {
       final failure = InvalidInputFailure();
       return Left(failure);
     }
+  }
+
+  Right<Failure, int> _parse(String text) {
+    final integer = int.parse(text);
+    if (integer < 0) {
+      throw const FormatException();
+    }
+
+    return Right(integer);
   }
 }
 

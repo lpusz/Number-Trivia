@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'number_trivia_remote_data_source.dart';
+part of 'remote_client.dart';
 
 // **************************************************************************
 // RetrofitGenerator

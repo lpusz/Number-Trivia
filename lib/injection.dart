@@ -24,8 +24,3 @@ abstract class RegisterModule {
   @lazySingleton
   Dio get dio => Dio();
 }
-
-abstract class Env {
-  static const String dev = 'dev';
-  static const String test = 'test';
-}

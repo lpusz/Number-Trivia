@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:number_trivia/features/number_trivia/presentation/bloc/number_trivia_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:number_trivia/features/number_trivia/presentation/bloc/number_trivia_bloc.dart';
 
 class TriviaControls extends StatefulWidget {
   const TriviaControls({Key? key}) : super(key: key);
@@ -22,49 +22,65 @@ class _TriviaControlsState extends State<TriviaControls> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        TextField(
-          keyboardType: TextInputType.number,
-          decoration: const InputDecoration(
-            border: OutlineInputBorder(),
-            hintText: 'Input a number',
-          ),
-          onChanged: (value) {
-            setState(() {
-              inputStr = value;
-            });
-          },
-        ),
+        _textField(),
         const SizedBox(height: 10),
-        Row(
-          children: [
-            Expanded(
-              child: RaisedButton(
-                onPressed: dispatchConcrete,
-                child: const Text('Search'),
-              ),
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-            Expanded(
-              child: RaisedButton(
-                onPressed: dispatchRandom,
-                child: const Text('Get random trivia'),
-              ),
-            ),
-          ],
-        ),
+        _buttons(),
       ],
     );
   }
 
-  void dispatchConcrete() {
-    final bloc = context.read<NumberTriviaBloc>();
-    bloc.add(GetTriviaForConcreteNumber(inputStr));
+  TextField _textField() {
+    return TextField(
+      keyboardType: TextInputType.number,
+      decoration: const InputDecoration(
+        border: OutlineInputBorder(),
+        hintText: 'Input a number',
+      ),
+      onChanged: _onChanged,
+    );
+  }
+
+  void _onChanged(String value) {
+    setState(() {
+      inputStr = value;
+    });
+  }
+
+  Row _buttons() {
+    return Row(
+      children: [
+        _searchButton(),
+        const SizedBox(width: 10),
+        _randomButton(),
+      ],
+    );
+  }
+
+  Expanded _randomButton() {
+    return Expanded(
+      child: ElevatedButton(
+        onPressed: dispatchRandom,
+        child: const Text('Get random trivia'),
+      ),
+    );
+  }
+
+  Expanded _searchButton() {
+    return Expanded(
+      child: ElevatedButton(
+        onPressed: dispatchConcrete,
+        child: const Text('Search'),
+      ),
+    );
   }
 
   void dispatchRandom() {
     final bloc = context.read<NumberTriviaBloc>();
     bloc.add(GetTriviaForRandomNumber());
+  }
+
+  void dispatchConcrete() {
+    final bloc = context.read<NumberTriviaBloc>();
+    bloc.add(GetTriviaForConcreteNumber(inputStr));
   }
 }

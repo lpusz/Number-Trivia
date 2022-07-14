@@ -17,13 +17,10 @@ abstract class NumberTriviaLocalDataSource {
 
 const cachedNumberTrivia = 'CACHED_NUMBER_TRIVIA';
 
-// @Named('NumberTriviaLocalDataSourceImpl')
 @Injectable(as: NumberTriviaLocalDataSource)
-// @injectable
 class NumberTriviaLocalDataSourceImpl implements NumberTriviaLocalDataSource {
   final SharedPreferences sharedPreferences;
 
-  // @factoryMethod
   NumberTriviaLocalDataSourceImpl({
     required this.sharedPreferences,
   });
@@ -41,16 +38,14 @@ class NumberTriviaLocalDataSourceImpl implements NumberTriviaLocalDataSource {
 
   @override
   Future<bool> cacheNumberTrivia(NumberTriviaModel triviaToCache) async {
-    return sharedPreferences.setString(
-      cachedNumberTrivia,
-      json.encode(
-        triviaToCache.toJson(),
-      ),
-    );
+    final jsonData = triviaToCache.toJson();
+    final value = json.encode(jsonData);
+    return sharedPreferences.setString(cachedNumberTrivia, value);
   }
 
   NumberTriviaModel _decodeModelFromJson(String? jsonString) {
-    final decodedValue = json.decode(jsonString ?? '');
+    final text = jsonString ?? '';
+    final decodedValue = json.decode(text);
     return NumberTriviaModel.fromJson(decodedValue);
   }
 }

@@ -12,21 +12,24 @@ import 'package:shared_preferences/shared_preferences.dart' as _i8;
 
 import 'core/network/network_info.dart' as _i6;
 import 'core/util/input_converter.dart' as _i5;
+import 'features/number_trivia/data/data_sources/number_trivia_data_source_impl.dart'
+    as _i11;
 import 'features/number_trivia/data/data_sources/number_trivia_local_data_source.dart'
     as _i9;
 import 'features/number_trivia/data/data_sources/number_trivia_remote_data_source.dart'
-    as _i7;
-import 'features/number_trivia/data/repositories/number_trivia_repository_impl.dart'
-    as _i11;
-import 'features/number_trivia/domain/repositories/number_trivia_repository.dart'
     as _i10;
-import 'features/number_trivia/domain/use_cases/get_concrete_number_trivia.dart'
-    as _i12;
-import 'features/number_trivia/domain/use_cases/get_random_number_trivia.dart'
+import 'features/number_trivia/data/data_sources/remote_client.dart' as _i7;
+import 'features/number_trivia/data/repositories/number_trivia_repository_impl.dart'
     as _i13;
-import 'features/number_trivia/presentation/bloc/number_trivia_bloc.dart'
+import 'features/number_trivia/domain/repositories/number_trivia_repository.dart'
+    as _i12;
+import 'features/number_trivia/domain/use_cases/get_concrete_number_trivia.dart'
     as _i14;
-import 'injection.dart' as _i15; // ignore_for_file: unnecessary_lambdas
+import 'features/number_trivia/domain/use_cases/get_random_number_trivia.dart'
+    as _i15;
+import 'features/number_trivia/presentation/bloc/number_trivia_bloc.dart'
+    as _i16;
+import 'injection.dart' as _i17; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -45,22 +48,22 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
   gh.factory<_i9.NumberTriviaLocalDataSource>(() =>
       _i9.NumberTriviaLocalDataSourceImpl(
           sharedPreferences: get<_i8.SharedPreferences>()));
-  gh.factory<_i7.NumberTriviaRemoteDataSource>(() =>
-      _i7.NumberTriviaRemoteDataSourceImpl(
+  gh.factory<_i10.NumberTriviaRemoteDataSource>(() =>
+      _i11.NumberTriviaRemoteDataSourceImpl(
           remoteClient: get<_i7.RemoteClient>()));
-  gh.factory<_i10.NumberTriviaRepository>(() => _i11.NumberTriviaRepositoryImpl(
-      remoteDataSource: get<_i7.NumberTriviaRemoteDataSource>(),
+  gh.factory<_i12.NumberTriviaRepository>(() => _i13.NumberTriviaRepositoryImpl(
+      remoteDataSource: get<_i10.NumberTriviaRemoteDataSource>(),
       localDataSource: get<_i9.NumberTriviaLocalDataSource>(),
       networkInfo: get<_i6.NetworkInfo>()));
-  gh.lazySingleton<_i12.GetConcreteNumberTrivia>(
-      () => _i12.GetConcreteNumberTrivia(get<_i10.NumberTriviaRepository>()));
-  gh.lazySingleton<_i13.GetRandomNumberTrivia>(
-      () => _i13.GetRandomNumberTrivia(get<_i10.NumberTriviaRepository>()));
-  gh.factory<_i14.NumberTriviaBloc>(() => _i14.NumberTriviaBloc(
-      getRandom: get<_i13.GetRandomNumberTrivia>(),
-      getConcrete: get<_i12.GetConcreteNumberTrivia>(),
+  gh.lazySingleton<_i14.GetConcreteNumberTrivia>(
+      () => _i14.GetConcreteNumberTrivia(get<_i12.NumberTriviaRepository>()));
+  gh.lazySingleton<_i15.GetRandomNumberTrivia>(
+      () => _i15.GetRandomNumberTrivia(get<_i12.NumberTriviaRepository>()));
+  gh.factory<_i16.NumberTriviaBloc>(() => _i16.NumberTriviaBloc(
+      getRandom: get<_i15.GetRandomNumberTrivia>(),
+      getConcrete: get<_i14.GetConcreteNumberTrivia>(),
       converter: get<_i5.InputConverter>()));
   return get;
 }
 
-class _$RegisterModule extends _i15.RegisterModule {}
+class _$RegisterModule extends _i17.RegisterModule {}

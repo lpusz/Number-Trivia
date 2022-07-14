@@ -15,13 +15,13 @@ void main() {
       'string represents an unsigned integer',
       () async {
         // Arrange
-        final str = '123';
+        const str = '123';
 
         // Act
         final result = inputConverter.stringToUnsignedInteger(str);
 
         // Assert
-        expect(result, Right(123));
+        expect(result, const Right(123));
       },
     );
 
@@ -30,7 +30,7 @@ void main() {
           'string is not an integer',
           () async {
         // Arrange
-        final str = 'abc';
+        const str = 'abc';
 
         // Act
         final result = inputConverter.stringToUnsignedInteger(str);
@@ -45,7 +45,7 @@ void main() {
           'string is a negative integer',
           () async {
         // Arrange
-        final str = '-123';
+        const str = '-123';
 
         // Act
         final result = inputConverter.stringToUnsignedInteger(str);

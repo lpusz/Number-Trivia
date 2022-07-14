@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:number_trivia/features/number_trivia/presentation/bloc/number_trivia_bloc.dart';
-import 'package:number_trivia/features/number_trivia/presentation/widgets/loading_widget.dart';
-import 'package:number_trivia/features/number_trivia/presentation/widgets/message_display.dart';
 import 'package:number_trivia/features/number_trivia/presentation/widgets/trivia_builder.dart';
 import 'package:number_trivia/features/number_trivia/presentation/widgets/trivia_controls.dart';
-import 'package:number_trivia/features/number_trivia/presentation/widgets/trivia_display.dart';
 import 'package:number_trivia/injection.dart';
 
 class NumberTriviaPage extends StatelessWidget {
@@ -41,4 +38,3 @@ class NumberTriviaPage extends StatelessWidget {
     );
   }
 }
-

@@ -44,15 +44,25 @@ class NumberTriviaRepositoryImpl implements NumberTriviaRepository {
     _ConcreteOrRandomChooser getConcreteOrRandom,
   ) async {
     if (await networkInfo.isConnected) {
-      try {
-        final remoteTrivia = await getConcreteOrRandom();
-        localDataSource.cacheNumberTrivia(remoteTrivia);
-        return Right(remoteTrivia);
-      } on ServerException {
-        return Left(ServerFailure());
-      }
+      return await _getConcreteOrRandomWithCaching(getConcreteOrRandom);
     }
 
+    return await _getLastNumberTrivia();
+  }
+
+  Future<Either<Failure, NumberTrivia>> _getConcreteOrRandomWithCaching(
+    _ConcreteOrRandomChooser getConcreteOrRandom,
+  ) async {
+    try {
+      final remoteTrivia = await getConcreteOrRandom();
+      localDataSource.cacheNumberTrivia(remoteTrivia);
+      return Right(remoteTrivia);
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+  Future<Either<Failure, NumberTrivia>> _getLastNumberTrivia() async {
     try {
       final localTrivia = await localDataSource.getLastNumberTrivia();
       return Right(localTrivia);

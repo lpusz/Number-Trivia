@@ -5,8 +5,10 @@ class LoadingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height / 3;
+
     return SizedBox(
-      height: MediaQuery.of(context).size.height / 3,
+      height: height,
       child: const Center(
         child: CircularProgressIndicator(),
       ),

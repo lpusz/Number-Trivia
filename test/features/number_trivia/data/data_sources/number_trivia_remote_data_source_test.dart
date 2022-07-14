@@ -1,9 +1,9 @@
-import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:number_trivia/core/error/exceptions.dart';
-import 'package:number_trivia/features/number_trivia/data/data_sources/number_trivia_remote_data_source.dart';
+import 'package:number_trivia/features/number_trivia/data/data_sources/number_trivia_data_source_impl.dart';
+import 'package:number_trivia/features/number_trivia/data/data_sources/remote_client.dart';
 import 'package:number_trivia/features/number_trivia/data/models/number_trivia_model.dart';
 
 import 'number_trivia_remote_data_source_test.mocks.dart';

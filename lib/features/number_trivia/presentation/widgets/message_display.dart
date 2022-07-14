@@ -7,17 +7,23 @@ class MessageDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height / 3;
+
     return SizedBox(
-      height: MediaQuery.of(context).size.height / 3,
+      height: height,
       child: Center(
         child: SingleChildScrollView(
-          child: Text(
-            message,
-            style: const TextStyle(fontSize: 25),
-            textAlign: TextAlign.center,
-          ),
+          child: _text(),
         ),
       ),
+    );
+  }
+
+  Text _text() {
+    return Text(
+      message,
+      style: const TextStyle(fontSize: 25),
+      textAlign: TextAlign.center,
     );
   }
 }

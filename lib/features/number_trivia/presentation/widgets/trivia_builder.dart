@@ -12,19 +12,21 @@ class TriviaBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<NumberTriviaBloc, NumberTriviaState>(
       bloc: context.read<NumberTriviaBloc>(),
-      builder: (context, state) {
-        if (state is Empty) {
-          return const MessageDisplay(message: 'Start searching!');
-        } else if (state is Error) {
-          return MessageDisplay(message: state.message);
-        } else if (state is Loaded) {
-          return TriviaDisplay(numberTrivia: state.trivia);
-        } else if (state is Loading) {
-          return const LoadingWidget();
-        }
-
-        return Container();
-      },
+      builder: _builder,
     );
   }
+
+  Widget _builder(BuildContext context, NumberTriviaState state) {
+      if (state is Empty) {
+        return const MessageDisplay(message: 'Start searching!');
+      } else if (state is Error) {
+        return MessageDisplay(message: state.message);
+      } else if (state is Loaded) {
+        return TriviaDisplay(numberTrivia: state.trivia);
+      } else if (state is Loading) {
+        return const LoadingWidget();
+      }
+
+      return Container();
+    }
 }

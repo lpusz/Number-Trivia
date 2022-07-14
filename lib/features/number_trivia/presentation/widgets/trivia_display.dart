@@ -11,30 +11,40 @@ class TriviaDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height / 3;
+
     return SizedBox(
-      height: MediaQuery.of(context).size.height / 3,
+      height: height,
       child: Column(
         children: [
-          Text(
-            numberTrivia.number.toString(),
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 50,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          Expanded(
-            child: Center(
-              child: SingleChildScrollView(
-                child: Text(
-                  numberTrivia.text,
-                  style: const TextStyle(fontSize: 25),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ),
-          ),
+          _numberDisplay(),
+          _descriptionDisplay(),
         ],
+      ),
+    );
+  }
+
+  Text _numberDisplay() {
+    return Text(
+      numberTrivia.number.toString(),
+      textAlign: TextAlign.center,
+      style: const TextStyle(
+        fontSize: 50,
+        fontWeight: FontWeight.bold,
+      ),
+    );
+  }
+
+  Expanded _descriptionDisplay() {
+    return Expanded(
+      child: Center(
+        child: SingleChildScrollView(
+          child: Text(
+            numberTrivia.text,
+            style: const TextStyle(fontSize: 25),
+            textAlign: TextAlign.center,
+          ),
+        ),
       ),
     );
   }
